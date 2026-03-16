@@ -11,6 +11,8 @@ const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:3000',
   'https://sivion-global.vercel.app',
+  'https://sivionglobaltechnologies.com',
+  'https://www.sivionglobaltechnologies.com',
   process.env.FRONTEND_URL,
 ].filter(Boolean);
 
