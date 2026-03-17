@@ -33,7 +33,7 @@ const Navbar = () => {
 
           {/* Logo */}
           <Link to="/" className="flex-shrink-0 flex items-center outline-none">
-            <Logo />
+            <Logo className="h-10 max-w-[200px]" />
           </Link>
 
           {/* Desktop Menu */}
