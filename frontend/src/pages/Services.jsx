@@ -44,7 +44,7 @@ const Services = () => {
       title: 'Website Maintenance',
       description: 'Ongoing support, security updates, and performance optimization to keep your platform running smoothly.',
       icon: Smartphone, // Placeholder icon
-      linkTo: '/contact',
+      linkTo: '/contact#contact-info',
       bgImage: '/service_bg_java_1773640831559.png'
     }
   ];

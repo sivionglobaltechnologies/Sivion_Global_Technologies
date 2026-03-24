@@ -68,7 +68,7 @@ const Hero = () => {
           </Link>
 
           <Link
-            to="/contact"
+            to="/contact#contact-info"
             className="flex items-center justify-center px-6 py-4 text-base md:text-lg font-semibold text-white transition-all duration-300 bg-white/5 backdrop-blur-md rounded-xl border border-white/20 hover:bg-white/10 hover:border-sky-400/50 group"
           >
             Contact Us
