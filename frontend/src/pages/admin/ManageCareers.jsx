@@ -217,32 +217,60 @@ const ApplicationsTab = () => {
   };
 
   const sendEmailNotification = (app, status) => {
-    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID';
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY';
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_ky7y4s1';
+
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'UPrq9FZhLjorG2Yse';
+    
+    // Debugging available in browser console: type _EMAILJS_CONFIG 
+    window._EMAILJS_CONFIG = { serviceId, publicKey };
+
 
     // Choose template based on status
     const templateId = status === 'selected'
       ? (import.meta.env.VITE_EMAILJS_SELECTED_TEMPLATE_ID || 'template_g3wf66q')
-      : (import.meta.env.VITE_EMAILJS_REJECTED_TEMPLATE_ID || 'template_e55htyi');
+      : (import.meta.env.VITE_EMAILJS_REJECTED_TEMPLATE_ID || 'template_4jimd0d');
+
 
     const templateParams = {
+      // Names found in your EmailJS Dashboard templates:
+      candidate_name: app.name,
+      job_role: app.position,
+      email: app.email, // This is the recipient/reply-to
+      company_name: 'SiviOn Global Technologies',
+      location: 'Remote/India', // Example location
+      title: app.position, // used in some subjects
+      name: 'SiviOn Global Technologies', // from_name
+      
+      // Fallbacks just in case
       to_name: app.name,
       to_email: app.email,
-      from_name: 'SiviOn Global Technologies',
+      
       status: status === 'selected' ? 'Selected' : 'Rejected',
-      position: app.position,
       message: status === 'selected'
         ? 'Congratulations! You have been selected for the position. We will get in touch with you soon.'
         : 'Thank you for your interest. Unfortunately, we have decided not to move forward with your application at this time.'
     };
 
+    console.log('Sending email with params:', templateParams);
+    console.log('Using Service ID:', serviceId, 'Template ID:', templateId, 'Public Key:', publicKey);
+
     emailjs.send(serviceId, templateId, templateParams, publicKey)
       .then((response) => {
         console.log('Email sent successfully!', response.status, response.text);
+        alert('Status updated and email sent to ' + app.email);
       }, (err) => {
         console.error('Failed to send email:', err);
+        const errorMsg = err.text || err.message || 'Unknown error';
+        if (errorMsg.includes('service') || err.status === 400) {
+          alert('ERROR: Please add an "Email Service" in your EmailJS Dashboard first! Then update the Service ID.');
+        } else {
+          alert('Status updated, but EmailJS failed: ' + errorMsg);
+        }
       });
   };
+
+
+
 
 
   const getStatusBadge = (status) => {
