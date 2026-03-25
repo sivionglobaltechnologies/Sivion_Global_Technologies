@@ -17,5 +17,9 @@ export default defineConfig({
       },
     },
   },
+  optimizeDeps: {
+    include: ['@emailjs/browser'],
+  },
 });
+
 
