@@ -12,7 +12,7 @@ const allowedOrigins = [
   'http://localhost:5174',
   'http://localhost:3000',
 
-  'https://sivion-global.vercel.app',
+  'https://sivion-global-technologies-yuxr.vercel.app',
   'https://sivionglobaltechnologies.com',
   'https://www.sivionglobaltechnologies.com',
   process.env.FRONTEND_URL,
