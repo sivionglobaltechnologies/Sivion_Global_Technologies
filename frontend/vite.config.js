@@ -12,7 +12,7 @@ export default defineConfig({
     port: 5174,
     proxy: {
       '/api': {
-        target: 'https://sivion-global-technologies-ten.vercel.app',
+        target: 'https://sivionglobal.onrender.com',
         changeOrigin: true,
       },
     },
